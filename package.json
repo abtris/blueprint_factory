@@ -1,0 +1,27 @@
+{
+  "name": "blueprint_factory",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/",
+  "dependencies": {
+    "async": "",
+    "factory_girl": ""
+  },
+  "devDependencies": {
+    "coffee-script": "~1.8.0",
+    "chai": "",
+    "mocha": ""
+  },
+  "scripts": {
+    "prepublish": "scripts/build",
+    "test": "./node_modules/.bin/mocha --compilers \"coffee:coffee-script\""
+  },
+  "contributors": [
+    {
+      "name": "Ladislav Prskavec",
+      "email": "ladislav@apiary.io"
+    }
+  ],
+  "author": "Apiary Inc <support@apiary.io>",
+  "license": "MIT"
+}
