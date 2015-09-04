@@ -25,7 +25,7 @@ createGroup = (size) ->
   output = ''
   console.log "Group Size: #{size}" if debug
   for i in [1..size]
-    output += "# Group #{faker.internet.userName()}\n"
+    output += "# Group #{faker.internet.userName()}#{Math.random()*10|0}\n"
     endpointSize = Math.random()*10|0
     output += createEndpointWithResponse(endpointSize)
   output
@@ -38,11 +38,11 @@ createEndpointWithResponse = (size) ->
   output
 
 createEndpoint = ->
-  "## #{faker.address.country()} [/#{faker.internet.userName().toLowerCase()}]\n"
+  "## #{faker.address.country()}#{Math.random()*10|0} [/#{faker.internet.userName().toLowerCase()}]\n"
 
 createResponse = (code = 200, method = 'GET') ->
   """
-  ### #{faker.internet.domainWord()} [#{method}]
+  ### #{faker.internet.domainWord()}#{Math.random()*10|0} [#{method}]
   + Response #{code} (application/json)
 
   #{createJsonBody()}
@@ -57,8 +57,8 @@ createBody = ->
   string = faker.lorem.paragraph
   indentString string, ' ', 8
 
-createBlueprint = ->
-  groupSize = randomIntInc 1,3
+createBlueprint = (n = 3) ->
+  groupSize = randomIntInc 1, n
 
   """
   #{createMeta()}
