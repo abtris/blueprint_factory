@@ -25,24 +25,24 @@ createGroup = (size) ->
   output = ''
   console.log "Group Size: #{size}" if debug
   for i in [1..size]
-    output += "# Group #{faker.internet.userName()}#{Math.random()*10|0}\n"
-    endpointSize = Math.random()*10|0
-    output += createEndpointWithResponse(endpointSize)
+    output += "# Group #{faker.name.findName()}#{i}\n"
+    endpointSize = Math.random()*10|1
+    output += createEndpointWithResponse(endpointSize, i)
   output
 
-createEndpointWithResponse = (size) ->
+createEndpointWithResponse = (size, index) ->
   output = ''
   for i in [1..size]
-    output += "#{createEndpoint()}"
-    output += "#{createResponse()}"
+    output += "#{createEndpoint(index)}"
+    output += "#{createResponse(index)}"
   output
 
-createEndpoint = ->
-  "## #{faker.address.country()}#{Math.random()*10|0} [/#{faker.internet.userName().toLowerCase()}]\n"
+createEndpoint = (index) ->
+  "## #{faker.address.country()}#{index} [/#{faker.name.firstName().toLowerCase()}#{index}]\n"
 
-createResponse = (code = 200, method = 'GET') ->
+createResponse = (index, code = 200, method = 'GET') ->
   """
-  ### #{faker.internet.domainWord()}#{Math.random()*10|0} [#{method}]
+  ### #{faker.internet.domainWord()}#{index} [#{method}]
   + Response #{code} (application/json)
 
   #{createJsonBody()}
