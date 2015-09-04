@@ -25,7 +25,7 @@ createGroup = (size) ->
   output = ''
   console.log "Group Size: #{size}" if debug
   for i in [1..size]
-    output += "# Group #{faker.name.findName()}#{i}\n"
+    output += "# Group #{faker.name.lastName()}#{i}\n"
     endpointSize = Math.random()*10|1
     output += createEndpointWithResponse(endpointSize, i)
   output
@@ -38,7 +38,7 @@ createEndpointWithResponse = (size, index) ->
   output
 
 createEndpoint = (index) ->
-  "## #{faker.address.country()}#{index} [/#{faker.name.firstName().toLowerCase()}#{index}]\n"
+  "## #{faker.address.country().replace('(','').replace(')', '')}#{index} [/#{faker.name.firstName().toLowerCase()}#{index}]\n"
 
 createResponse = (index, code = 200, method = 'GET') ->
   """
